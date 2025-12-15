@@ -1,0 +1,6 @@
+---
+- name: CosmicGen baseline
+  hosts: all
+  gather_facts: true
+  roles:
+    - common

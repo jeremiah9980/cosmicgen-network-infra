@@ -1,0 +1,7 @@
+---
+# Placeholder baseline tasks.
+# Add hardening, packages, time sync, etc.
+
+- name: Print host info
+  debug:
+    msg: "Configuring {{ inventory_hostname }} ({{ ansible_host | default('n/a') }})"

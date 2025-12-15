@@ -1,0 +1,90 @@
+<mxfile host="app.diagrams.net" modified="2025-12-15T00:00:00.000Z" agent="GPT" version="22.1.0">
+  <diagram id="cosmicgen" name="CosmicGen PoC Network">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Internet -->
+        <mxCell id="internet" value="Internet" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Eero -->
+        <mxCell id="eero" value="Eero Gateway&#10;LAN: 192.168.0.1/16&#10;NAT + Wi‑Fi" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="50" width="220" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- MikroTik -->
+        <mxCell id="mt" value="MikroTik CRS326-24G-2S+&#10;RouterOS 6.49.x&#10;Uplink (VLAN50 SVI): 192.168.0.254/16" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="40" width="320" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- VLAN blocks -->
+        <mxCell id="vlan10" value="VLAN10 (LAN)&#10;192.168.10.0/24" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="210" width="200" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="vlan20" value="VLAN20 (Servers)&#10;192.168.20.0/24" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="210" width="200" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="vlan30" value="VLAN30 (Mgmt)&#10;192.168.30.0/24" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="210" width="200" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="vlan40" value="VLAN40 (IoT)&#10;192.168.40.0/24" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="210" width="200" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- Proxmox nodes -->
+        <mxCell id="pve1" value="Supermicro Host 1&#10;Proxmox (8006)&#10;IPMI (80/443)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="340" width="240" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="pve2" value="Supermicro Host 2&#10;Proxmox (8006)&#10;IPMI (80/443)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="450" width="240" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="pve3" value="Supermicro Host 3&#10;Proxmox (8006)&#10;IPMI (80/443)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="560" width="240" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- VPN client -->
+        <mxCell id="vpnclient" value="Remote Client&#10;Windows L2TP/IPsec&#10;VPN Pool: 192.168.250.0/24" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="40" width="220" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- Links -->
+        <mxCell id="l1" style="endArrow=block;html=1;" edge="1" parent="1" source="internet" target="eero">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="l2" style="endArrow=block;html=1;" edge="1" parent="1" source="eero" target="mt">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="l3" style="endArrow=block;html=1;" edge="1" parent="1" source="mt" target="vlan10">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="l4" style="endArrow=block;html=1;" edge="1" parent="1" source="mt" target="vlan20">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="l5" style="endArrow=block;html=1;" edge="1" parent="1" source="mt" target="vlan30">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="l6" style="endArrow=block;html=1;" edge="1" parent="1" source="mt" target="vlan40">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="l7" style="endArrow=block;html=1;" edge="1" parent="1" source="vlan20" target="pve1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="l8" style="endArrow=block;html=1;" edge="1" parent="1" source="vlan20" target="pve2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="l9" style="endArrow=block;html=1;" edge="1" parent="1" source="vlan20" target="pve3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="l10" value="L2TP/IPsec (UDP 500/4500/1701)" style="endArrow=block;html=1;" edge="1" parent="1" source="vpnclient" target="mt">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
