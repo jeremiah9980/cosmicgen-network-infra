@@ -1,107 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>CosmicGen PoC Environment</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <title>CosmicGen POC Overview</title>
+  <style>
+    /* CosmicGen‑inspired colour palette */
+    :root {
+      --bg-dark: #0a192f;         /* deep navy background */
+      --panel-dark: #021b30;      /* slightly lighter panel */
+      --accent: #64ffda;          /* bright turquoise accent */
+      --highlight: #fca311;       /* golden highlight */
+      --text-light: #e5e5e5;      /* off‑white text */
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--panel-dark);
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 4px solid var(--accent);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.4rem;
+      color: var(--accent);
+    }
+
+    nav {
+      margin-top: 1rem;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: var(--highlight);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 2rem 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    section h2 {
+      color: var(--accent);
+      border-bottom: 2px solid var(--highlight);
+      padding-bottom: 0.5rem;
+    }
+
+    .diagram img {
+      width: 100%;
+      height: auto;
+      border: 2px solid var(--accent);
+      border-radius: 4px;
+      margin-top: 1rem;
+    }
+
+    .repo-list ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .repo-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    .repo-list a {
+      color: var(--highlight);
+      text-decoration: none;
+    }
+
+    .repo-list a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: var(--panel-dark);
+      color: var(--accent);
+      text-align: center;
+      padding: 1rem;
+      border-top: 4px solid var(--accent);
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <h1>CosmicGen POC Environment</h1>
+    <nav>
+      <a href="#overview">Overview</a>
+      <a href="#diagram">Network Diagram</a>
+      <a href="#repo">📂 Repository Structure</a>
+    </nav>
+  </header>
 
-<header>
-  <h1>CosmicGen Proof of Concept (PoC)</h1>
-  <p>On-prem micro-cloud infrastructure with secure remote access</p>
-</header>
+  <main>
+    <section id="overview">
+      <h2>Overview</h2>
+      <p>This page provides an overview of the CosmicGen proof‑of‑concept (POC) environment.  The POC
+      demonstrates a small scale network with a public WAN connection, secure VPN access, a MikroTik CRS326
+      switch/router, and three hosts running Proxmox VE alongside their IPMI management interfaces.  The
+      configuration, scripts and documentation for this environment are contained in the accompanying
+      repository.</p>
+    </section>
 
-<section>
-  <h2>Overview</h2>
-  <p>
-    The CosmicGen PoC is a secure, segmented, on-prem infrastructure environment
-    designed to validate compute, networking, and remote access capabilities
-    using enterprise-grade tooling.
-  </p>
-</section>
+    <section id="diagram" class="diagram">
+      <h2>Network Diagram &amp; Rack Photo</h2>
+      <p>The diagram below illustrates the logical topology of the POC environment alongside a photo of the
+      physical rack.  Internet traffic flows through the Eero gateway and MikroTik CRS326 switch to
+      Wi‑Fi/LAN clients, VPN clients, and the Proxmox/IPMI hosts.</p>
+      <img src="assets/poc_rack_diagram.jpg" alt="CosmicGen POC network diagram and rack photo">
+    </section>
 
-<section>
-  <h2>Network Architecture</h2>
-  <ul>
-    <li><strong>WAN:</strong> 47.163.25.30</li>
-    <li><strong>Gateway:</strong> Eero (192.168.0.1)</li>
-    <li><strong>Core Switch:</strong> MikroTik CRS (192.168.0.254)</li>
-    <li><strong>Subnet:</strong> 192.168.0.0/16</li>
-  </ul>
-</section>
+    <section id="repo" class="repo-list">
+      <h2>📂 Repository Structure</h2>
+      <p>The GitHub repository for this project is organised as follows.  Click the links below to explore the
+      corresponding resources.</p>
+      <ul>
+        <li><strong><a href="README.md">README.md</a></strong> – high‑level description of the POC architecture and usage.</li>
+        <li><strong>config/</strong>
+          <ul>
+            <li><a href="config/CosmicGen-POC-SW1.cfg">CosmicGen-POC-SW1.cfg</a> – MikroTik CRS326 configuration for the POC switch.</li>
+          </ul>
+        </li>
+        <li><strong>scripts/</strong>
+          <ul>
+            <li><a href="scripts/Install-CosmicGen-VPN.ps1">Install-CosmicGen-VPN.ps1</a> – Windows PowerShell script to install VPN profiles for users.</li>
+          </ul>
+        </li>
+        <li><strong>docs/</strong>
+          <ul>
+            <li><a href="docs/BUILD_DOC.md">BUILD_DOC.md</a> – formal build document outlining all deployment steps.</li>
+            <li><a href="docs/runbook.md">runbook.md</a> – runbook describing day‑to‑day operational tasks, troubleshooting and support.</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </main>
 
-<section>
-  <h2>Compute Hosts</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Host</th>
-        <th>IPMI</th>
-        <th>Proxmox</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Host 1</td>
-        <td>192.168.5.200</td>
-        <td>192.168.5.210</td>
-      </tr>
-      <tr>
-        <td>Host 2</td>
-        <td>192.168.5.201</td>
-        <td>192.168.5.211</td>
-      </tr>
-      <tr>
-        <td>Host 3</td>
-        <td>192.168.5.202</td>
-        <td>192.168.5.212</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-<section>
-  <h2>Remote Access & Security</h2>
-  <ul>
-    <li>L2TP/IPsec VPN hosted on MikroTik</li>
-    <li>Per-user VPN credentials</li>
-    <li>IPsec NAT-Traversal enabled</li>
-    <li>Firewall rules restrict management access to VPN</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Management Interfaces</h2>
-  <ul>
-    <li>Proxmox Web UI (Port 8006)</li>
-    <li>IPMI Web Consoles</li>
-    <li>MikroTik WinBox / SSH</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Monitoring & Operations</h2>
-  <p>
-    The environment is designed to integrate with lightweight monitoring tools
-    (Uptime Kuma, Prometheus, SNMP) to provide availability alerts and system health visibility.
-  </p>
-</section>
-
-<section>
-  <h2>Future Roadmap</h2>
-  <ul>
-    <li>Terraform-driven provisioning</li>
-    <li>Ansible configuration management</li>
-    <li>GPU compute expansion</li>
-    <li>Multi-site PoC replication</li>
-  </ul>
-</section>
-
-<footer>
-  <p>© CosmicGen • Proof of Concept Environment</p>
-</footer>
-
+  <footer>
+    <p>&copy; 2025 CosmicGen POC – Project documentation and infrastructure configuration.</p>
+  </footer>
 </body>
 </html>
