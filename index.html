@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CosmicGen PoC Environment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>CosmicGen Proof of Concept (PoC)</h1>
+  <p>On-prem micro-cloud infrastructure with secure remote access</p>
+</header>
+
+<section>
+  <h2>Overview</h2>
+  <p>
+    The CosmicGen PoC is a secure, segmented, on-prem infrastructure environment
+    designed to validate compute, networking, and remote access capabilities
+    using enterprise-grade tooling.
+  </p>
+</section>
+
+<section>
+  <h2>Network Architecture</h2>
+  <ul>
+    <li><strong>WAN:</strong> 47.163.25.30</li>
+    <li><strong>Gateway:</strong> Eero (192.168.0.1)</li>
+    <li><strong>Core Switch:</strong> MikroTik CRS (192.168.0.254)</li>
+    <li><strong>Subnet:</strong> 192.168.0.0/16</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Compute Hosts</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Host</th>
+        <th>IPMI</th>
+        <th>Proxmox</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Host 1</td>
+        <td>192.168.5.200</td>
+        <td>192.168.5.210</td>
+      </tr>
+      <tr>
+        <td>Host 2</td>
+        <td>192.168.5.201</td>
+        <td>192.168.5.211</td>
+      </tr>
+      <tr>
+        <td>Host 3</td>
+        <td>192.168.5.202</td>
+        <td>192.168.5.212</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Remote Access & Security</h2>
+  <ul>
+    <li>L2TP/IPsec VPN hosted on MikroTik</li>
+    <li>Per-user VPN credentials</li>
+    <li>IPsec NAT-Traversal enabled</li>
+    <li>Firewall rules restrict management access to VPN</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Management Interfaces</h2>
+  <ul>
+    <li>Proxmox Web UI (Port 8006)</li>
+    <li>IPMI Web Consoles</li>
+    <li>MikroTik WinBox / SSH</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Monitoring & Operations</h2>
+  <p>
+    The environment is designed to integrate with lightweight monitoring tools
+    (Uptime Kuma, Prometheus, SNMP) to provide availability alerts and system health visibility.
+  </p>
+</section>
+
+<section>
+  <h2>Future Roadmap</h2>
+  <ul>
+    <li>Terraform-driven provisioning</li>
+    <li>Ansible configuration management</li>
+    <li>GPU compute expansion</li>
+    <li>Multi-site PoC replication</li>
+  </ul>
+</section>
+
+<footer>
+  <p>© CosmicGen • Proof of Concept Environment</p>
+</footer>
+
+</body>
+</html>
