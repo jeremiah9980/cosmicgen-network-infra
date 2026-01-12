@@ -1,0 +1,14 @@
+target_node    = "pve01"
+template_vmid  = 9000
+
+vm_count       = 1
+vm_name_prefix = "cosmicgen"
+vm_cpu_cores   = 4
+vm_memory_mb   = 8192
+vm_disk_gb     = 80
+
+storage_pool   = "local-lvm"
+bridge         = "vmbr0"
+vlan_tag       = 10
+
+ssh_public_keys = "ssh-ed25519 AAAA..."
